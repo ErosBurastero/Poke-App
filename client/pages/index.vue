@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="primary">hola como estas</p>
+    <p class="primary">hola re panch</p>
   </div>
 </template>
 

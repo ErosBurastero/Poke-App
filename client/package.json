@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.12.3",
+    "cypress": "^13.2.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.5.1"
   }

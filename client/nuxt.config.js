@@ -2,6 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
+    ssr: false,
     head: {
         titleTemplate: '%s - nuxt2Base',
         title: 'nuxt2Base',
@@ -30,6 +31,13 @@ export default {
     components: [
         { path: '~/components', prefix: '', pathPrefix: false }
     ],
+
+    watchers: {
+        webpack: {
+            aggregateTimeout: 300,
+            poll: 1000,
+        },
+    },
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
