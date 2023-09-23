@@ -8,7 +8,7 @@
 export default {
   props: {
     avatarClass: {
-      type: [Array, Object, String],
+      type: [Array, String],
     },
   },
 };

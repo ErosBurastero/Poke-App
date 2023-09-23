@@ -1,5 +1,25 @@
 <template>
   <v-app dark>
+    <v-system-bar
+      window
+      class="primary d-flex justify-space-between white--text"
+      app
+      fixed
+    >
+      <span class="">Bienvenido a mi portfolio</span>
+      <div class="d-flex align-center">
+        <div class="mr-4">
+          <span>Español</span>
+          <span class="ml-3" @click="changeLocale">Ingles</span>
+        </div>
+        <v-divider vertical dark></v-divider>
+        <div class="ml-4">
+          <NuxtLink to="/contacto" class="text-decoration-none white--text"
+            >Contacto</NuxtLink
+          >
+        </div>
+      </div>
+    </v-system-bar>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -19,28 +39,25 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
+      <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" />
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      <Button
+        icon
+        @click.stop="rightDrawer = !rightDrawer"
+        withIcon
+        iconName="mdi-cog"
+        text
+        iconColor="primary"
+      />
     </v-app-bar>
+
     <v-main>
       <v-container>
         <Nuxt />
@@ -48,11 +65,11 @@
     </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
-        <v-list-item @click.native="right = !right">
+        <v-list-item>
           <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
+            <v-icon light> mdi-repeat</v-icon>
           </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+          <v-list-item-title>add theme here</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -68,7 +85,7 @@ export default {
   data() {
     return {
       clipped: false,
-      drawer: false,
+      drawer: true,
       fixed: false,
       items: [
         {
@@ -87,6 +104,11 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js',
     }
+  },
+  methods: {
+    changeLocale(lang) {
+      this.$vuetify.lang.current = lang
+    },
   },
 }
 </script>

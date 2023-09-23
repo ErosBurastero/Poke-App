@@ -1,8 +1,8 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     ssr: false,
+    target: 'static',
+
     head: {
         titleTemplate: '%s - nuxt2Base',
         title: 'nuxt2Base',
@@ -22,10 +22,20 @@ export default {
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
-    css: [],
+    css: ['assets/scss/main.scss', ],
+
+    styleResources: {
+        scss: [
+            'assets/scss/variables.scss',
+            'assets/scss/main.scss'
+        ]
+    },
+    router: {
+        middleware: ['auth']
+    },
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [{ src: '~/plugins/vuetify' }, ],
+    plugins: [{ src: '~/plugins/vuetify' }, '~/plugins/services.js'],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: [

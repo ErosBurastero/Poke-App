@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <p class="primary">hola re panch</p>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
   name: 'IndexPage',
+  created() {
+    console.log(this.$vuetify.lang)
+  },
 }
 </script>
-<style scoped lang="scss">
-.color-text {
-  color: $white;
-}
-</style>

@@ -1,0 +1,23 @@
+@import './variables.scss';
+.color-primary {
+    color: $white;
+}
+
+.wrapper {
+    width: 83%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 1050px) {
+    .wrapper {
+        width: 95%;
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper {
+        width: 90%;
+        max-width: none;
+    }
+}
