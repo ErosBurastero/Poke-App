@@ -1,25 +1,5 @@
 <template>
   <v-app dark>
-    <v-system-bar
-      window
-      class="primary d-flex justify-space-between white--text"
-      app
-      fixed
-    >
-      <span class="">Bienvenido a mi portfolio</span>
-      <div class="d-flex align-center">
-        <div class="mr-4">
-          <span>Español</span>
-          <span class="ml-3" @click="changeLocale">Ingles</span>
-        </div>
-        <v-divider vertical dark></v-divider>
-        <div class="ml-4">
-          <NuxtLink to="/contacto" class="text-decoration-none white--text"
-            >Contacto</NuxtLink
-          >
-        </div>
-      </div>
-    </v-system-bar>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
