@@ -15,8 +15,8 @@ export default {
   },
 }
 </script>
-//
-// <style scoped lang="scss">
+// //
+<style scoped lang="scss">
 // ::v-deep .v-pagination__item {
 //   background-color: $blue !important;
 //   color: $white !important;
@@ -53,4 +53,5 @@ export default {
 // ::v-deep .v-icon:hover {
 //   color: white;
 // }
-// </style>
+//
+</style>

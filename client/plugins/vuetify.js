@@ -17,37 +17,38 @@ export default new Vuetify({
         dark: false,
         themes: {
             light: {
-                primary: '#294FB3',
-                secondary: '#2992B3',
-                bodyColor: '#E5E5E5',
-                textLight: '#4F5667',
-                dark: '#292D32',
-                greyText: '#b7b3b3',
-                ultraLightGrey: '#DADADA',
-                lightGrey: '#F8F9FA',
-                cancel: '#FF7B43',
-                accent: '#82B1FF',
-                error: '#FF5252',
-                info: '#2196F3',
-                success: '#4CAF50',
-                warning: '#FFC107'
+                primary: '#FFD700', // Gold/Yellow
+                secondary: '#EF5350', // Red
+                bodyColor: '#FFFFFF', // White
+                textLight: '#212121', // Dark Gray/Black
+                dark: '#424242', // Gray
+                greyText: '#616161', // Light Gray
+                ultraLightGrey: '#F5F5F5', // Light Gray
+                lightGrey: '#DADADA', // Light Gray
+                cancel: '#3949AB', // Indigo
+                accent: '#4CAF50', // Green
+                error: '#EF5350', // Red
+                info: '#FFFFFF', // White
+                success: '#4CAF50', // Green
+                warning: '#FFD700' // Gold/Yellow
             },
             dark: {
-                primary: '#BB86FC',
-                secondary: '#03DAC6',
-                bodyColor: '#121212',
-                textLight: '#FFFFFF',
-                dark: '#1F1F1F',
-                greyText: '#9E9E9E',
-                ultraLightGrey: '#333333',
-                lightGrey: '#424242',
-                cancel: '#FF7043',
-                accent: '#448AFF',
-                error: '#FF5252',
-                info: '#2196F3',
-                success: '#4CAF50',
-                warning: '#FFC107'
+                primary: '#FFD700', // Gold/Yellow
+                secondary: '#EF5350', // Red
+                bodyColor: '#212121', // Dark Gray/Black
+                textLight: '#FFFFFF', // White
+                dark: '#1F1F1F', // Dark Gray
+                greyText: '#9E9E9E', // Light Gray
+                ultraLightGrey: '#333333', // Dark Gray
+                lightGrey: '#424242', // Gray
+                cancel: '#3949AB', // Indigo
+                accent: '#4CAF50', // Green
+                error: '#EF5350', // Red
+                info: '#FFFFFF', // White
+                success: '#4CAF50', // Green
+                warning: '#FFD700' // Gold/Yellow
             }
         }
+
     }
 })

@@ -1,8 +1,8 @@
-// import questions from "~/services/productInformation/questions.js";
+import pokemonInfo from "~/services/pokemonInfo.js";
 
 export default ({ $axios }, inject) => {
     const allMethods = {
-        // ...questions($axios),
+        ...pokemonInfo($axios),
     }
     const methods = Object.keys(allMethods)
     methods.forEach((method) => {

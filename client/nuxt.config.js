@@ -15,7 +15,7 @@ export default {
             { hid: 'description', name: 'description', content: '' },
             { name: 'format-detection', content: 'telephone=no' },
         ],
-        link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+        link: [{ rel: 'icon', type: 'image/x-icon', href: '/poke.png' }],
     },
     server: {
         port: process.env.PORT
@@ -53,6 +53,7 @@ export default {
     buildModules: [
         // https://go.nuxtjs.dev/vuetify
         '@nuxtjs/vuetify',
+        '@nuxtjs/dotenv'
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
