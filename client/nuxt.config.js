@@ -4,8 +4,8 @@ export default {
     target: 'static',
 
     head: {
-        titleTemplate: '%s - nuxt2Base',
-        title: 'nuxt2Base',
+        titleTemplate: '%s',
+        title: 'Pokemon app',
         htmlAttrs: {
             lang: 'en',
         },

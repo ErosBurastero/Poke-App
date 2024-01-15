@@ -24,15 +24,19 @@
               <VuetifyImage
                 max-height="250"
                 max-width="300"
-                :src="pokemon.sprites.back_default"
+                :src="
+                  pokemon.sprites.back_default ||
+                  pokemon.sprites.front_shiny ||
+                  '/no-available.png'
+                "
               />
             </v-col>
             <v-col cols="12" md="8" class="pa-0">
-              <h3 class="poppins fs-28" v-if="description">
+              <h3 class="poppins fs-28">
                 Experiencia base:
                 <span class="vt ml-3 fs-30">{{ pokemon.base_experience }}</span>
               </h3>
-              <h3 class="poppins fs-28" v-if="description">
+              <h3 class="poppins fs-28">
                 Altura:
                 <span class="vt ml-3 fs-30">{{
                   pokemon.height + ' pies'
@@ -94,6 +98,7 @@
 
 <script>
 import { fetchDataFunction } from '@/services/fetchDataFunction'
+import { mapActions } from 'vuex'
 
 export default {
   props: {
@@ -136,6 +141,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['handleAlert']),
     async getPokemonDescription() {
       await fetchDataFunction(
         async () => {
@@ -146,10 +152,11 @@ export default {
           this.description = data.data.descriptions
         },
         (error) => {
-          this.snackbar.snackbar = true
-          this.snackbar.color = 'error'
-          this.snackbar.text =
-            'Error al obtener la descripcion, por favor, refresque la pagina'
+          this.handleAlert({
+            showAlert: true,
+            type: 'error',
+            text: 'Error al intentar cargar descripciones, por favor, refresque la pagina',
+          })
           return error
         },
         this.$store

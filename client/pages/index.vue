@@ -21,7 +21,11 @@
                     <VuetifyImage
                       height="200"
                       width="220"
-                      :src="pokemon.sprites.front_default"
+                      :src="
+                        pokemon.sprites.front_default
+                          ? pokemon.sprites.front_default
+                          : '/no-available.png'
+                      "
                       alt="Pokemon Image"
                     />
                   </figure>
@@ -73,9 +77,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <Snackbar v-model="snackbar.model" :color="snackbar.color">{{
-      snackbar.text
-    }}</Snackbar>
     <PokemonDialog
       @click:outside="openOrCloseDialog"
       @closeDialog="openOrCloseDialog"
@@ -88,6 +89,7 @@
 
 <script>
 import { fetchDataFunction } from '@/services/fetchDataFunction'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'IndexPage',
@@ -95,11 +97,6 @@ export default {
     return {
       pokemons: [],
       pokemon: null,
-      snackbar: {
-        model: false,
-        text: '',
-        color: '',
-      },
       offset: 15,
       limit: 15,
       pagination: null,
@@ -110,6 +107,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['handleAlert']),
     async getPokemons() {
       await fetchDataFunction(
         async () => {
@@ -133,10 +131,11 @@ export default {
           this.pokemons = pokemonDetails
         },
         (error) => {
-          this.snackbar.snackbar = true
-          this.snackbar.color = 'error'
-          this.snackbar.text =
-            'Error al intentar cargar pokemones, por favor, refresque la pagina'
+          this.handleAlert({
+            showAlert: true,
+            type: 'error',
+            text: 'Error al intentar cargar pokemones, por favor, refresque la pagina',
+          })
           return error
         },
         this.$store
