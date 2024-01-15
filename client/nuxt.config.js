@@ -4,8 +4,8 @@ export default {
     target: 'static',
 
     head: {
-        titleTemplate: '%s - nuxt2Base',
-        title: 'nuxt2Base',
+        titleTemplate: '%s',
+        title: 'Pokemon app',
         htmlAttrs: {
             lang: 'en',
         },
@@ -15,7 +15,13 @@ export default {
             { hid: 'description', name: 'description', content: '' },
             { name: 'format-detection', content: 'telephone=no' },
         ],
-        link: [{ rel: 'icon', type: 'image/x-icon', href: '/poke.png' }],
+        link: [{ rel: 'icon', type: 'image/x-icon', href: '/poke.png' },
+            { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+            { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+            { rel: 'stylesheet', href: "https://fonts.googleapis.com/css2?family=VT323:wght@300;400;500&display=swap" },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@400;500;600&display=swap' }
+
+        ],
     },
     server: {
         port: process.env.PORT
@@ -29,9 +35,6 @@ export default {
             'assets/scss/variables.scss',
             'assets/scss/main.scss'
         ]
-    },
-    router: {
-        middleware: ['auth']
     },
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

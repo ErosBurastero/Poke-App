@@ -1,19 +1,25 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
+  <v-app>
+    <v-main class="bodyColor">
+      <div v-if="error.statusCode === 404">
+        <VuetifyImage max-width="600" max-height="500" src="/error.png" />
+        <span class="vt fs-50">{{ pageNotFound }}</span>
+      </div>
+
+      <div v-else>
+        <VuetifyImage max-width="600" max-height="500" src="/error.png" />
+        <span class="vt fs-50">{{ otherError }}</span>
+      </div>
+      <span @click="refreshPage" class="pointer fs-30 poppins blue--text"
+        >Pagina principal</span
+      >
+    </v-main>
   </v-app>
 </template>
 
 <script>
 export default {
   name: 'EmptyLayout',
-  layout: 'empty',
   props: {
     error: {
       type: Object,
@@ -22,9 +28,14 @@ export default {
   },
   data() {
     return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred',
+      pageNotFound: 'Error 404 Not Found',
+      otherError: 'Ha ocurrido un error',
     }
+  },
+  methods: {
+    refreshPage() {
+      location.reload()
+    },
   },
   head() {
     const title =
@@ -35,9 +46,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>

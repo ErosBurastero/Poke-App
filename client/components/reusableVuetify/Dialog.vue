@@ -23,9 +23,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.v-dialog__content {
-  justify-content: flex-end;
-  height: unset !important;
-}
-</style>
