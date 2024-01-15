@@ -15,7 +15,13 @@ export default {
             { hid: 'description', name: 'description', content: '' },
             { name: 'format-detection', content: 'telephone=no' },
         ],
-        link: [{ rel: 'icon', type: 'image/x-icon', href: '/poke.png' }],
+        link: [{ rel: 'icon', type: 'image/x-icon', href: '/poke.png' },
+            { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+            { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+            { rel: 'stylesheet', href: "https://fonts.googleapis.com/css2?family=VT323:wght@300;400;500&display=swap" },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@400;500;600&display=swap' }
+
+        ],
     },
     server: {
         port: process.env.PORT

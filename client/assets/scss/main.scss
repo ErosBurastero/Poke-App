@@ -1,18 +1,59 @@
 @import './variables.scss';
-.color-primary {
-    color: $white;
+.br-16 {
+    border-radius: 16px !important;
+}
+
+.vt {
+    font-family: 'VT323', monospace;
+}
+
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.fs-18 {
+    font-size: 18px !important;
+}
+
+.fs-20 {
+    font-size: 20px !important;
+}
+
+.fs-22 {
+    font-size: 22px;
+}
+
+.fs-24 {
+    font-size: 24px !important;
+}
+
+.fs-26 {
+    font-size: 26px !important;
+}
+
+.fs-30 {
+    font-size: 30px !important;
+}
+
+.fs-32 {
+    font-size: 32px;
+}
+
+.fs-34 {
+    font-size: 34px;
+}
+
+.fs-36 {
+    font-size: 36px;
 }
 
 .wrapper {
-    width: 83%;
+    width: 93%;
     margin: 0 auto;
-}
-
-@media screen and (max-width: 1050px) {
-    .wrapper {
-        width: 95%;
-        max-width: none;
-    }
 }
 
 @media screen and (max-width: 480px) {

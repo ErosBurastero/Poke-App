@@ -1,19 +1,53 @@
 <template>
-  <div class="mt-10" v-if="pokemons">
+  <div class="mt-10 wrapper" v-if="pokemons">
     <v-container fluid class="pa-0">
-      <v-row>
-        <v-col cols="4" v-for="(pokemon, index) in pokemons" :key="index">
-          <Card color="secondary">
+      <v-row justify="space-between">
+        <v-col
+          cols="12"
+          sm="6"
+          lg="4"
+          v-for="(pokemon, index) in pokemons"
+          :key="index"
+        >
+          <Card color="primary" cardClass="br-16 h-100">
             <template #content>
-              <VuetifyImage
-                height="200"
-                width="220"
-                :src="pokemon.sprites.front_default"
-                alt="Pokemon Image"
-              />
-              <h2>{{ pokemon.name }}</h2>
-              <p>Height: {{ pokemon.height }}</p>
-              <p>Weight: {{ pokemon.weight }}</p>
+              <v-row>
+                <v-col cols="12" class="d-flex justify-center">
+                  <figure>
+                    <VuetifyImage
+                      height="200"
+                      width="220"
+                      :src="pokemon.sprites.front_default"
+                      alt="Pokemon Image"
+                    />
+                  </figure>
+                </v-col>
+              </v-row>
+              <v-divider></v-divider>
+              <v-row class="px-4 pb-4">
+                <v-col cols="12">
+                  <h2 class="vt fs-36 text-center">{{ pokemon.name }}</h2>
+                  <div class="d-flex align-center mt-2">
+                    <h3 class="fs-28 poppins">
+                      {{ pokemon.types.length === 1 ? 'Type: ' : 'Types: ' }}
+                    </h3>
+                    <span
+                      v-for="type in pokemon.types"
+                      :key="type.slot"
+                      class="d-flex align-center mt-n1 ml-2 vt fs-30"
+                    >
+                      {{
+                        pokemon.types.length === type.slot
+                          ? type.type.name + '.'
+                          : type.type.name + ', '
+                      }}
+                    </span>
+                  </div>
+                  <h3 class="poppins fs-28">
+                    Weight: <span class="vt fs-30">{{ pokemon.weight }}</span>
+                  </h3>
+                </v-col>
+              </v-row>
             </template>
           </Card>
         </v-col>
@@ -22,11 +56,12 @@
         <v-col cols="12" class="d-flex justify-center">
           <Pagination
             color="primary"
+            navigation-color="primary"
             circle
             paginationClass="pb-9"
             v-model="currentPage"
             :length="pagination"
-            :total-visible="10"
+            :total-visible="$vuetify.breakpoint.smAndDown ? 5 : 10"
             @next="increaseOffset"
             @previous="decreaseOffset"
             @input="getInput"
@@ -42,7 +77,7 @@
 
 <script>
 import { fetchDataFunction } from '@/services/fetchDataFunction'
-
+import { mapMutations } from 'vuex'
 export default {
   name: 'IndexPage',
   data() {
@@ -53,8 +88,8 @@ export default {
         text: '',
         color: '',
       },
-      offset: 16,
-      limit: 16,
+      offset: 15,
+      limit: 15,
       pagination: null,
       currentPage: 1,
       nextPage: null,
@@ -62,6 +97,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['handleLoading']),
     async getPokemons() {
       await fetchDataFunction(
         async () => {
@@ -72,8 +108,8 @@ export default {
           console.log(data)
           this.previousPage = data.data.previous
           this.nextPage = data.data.next
-          if (data.data.count > 16) {
-            this.pagination = Math.ceil(data.data.count / 16)
+          if (data.data.count > 15) {
+            this.pagination = Math.ceil(data.data.count / 15) - 1
           } else {
             this.pagination = 1
           }
@@ -84,6 +120,7 @@ export default {
             })
           )
           this.pokemons = pokemonDetails
+          console.log(this.pokemons, 'pokemons')
         },
         (error) => {
           this.snackbar.snackbar = true
@@ -91,14 +128,15 @@ export default {
           this.snackbar.text =
             'Error al intentar cargar pokemones, por favor, refresque la pagina'
           return error
-        }
+        },
+        this.$store
       )
     },
     increaseOffset() {
-      this.offset = this.offset + 16
+      this.offset = this.offset + 15
     },
     decreaseOffset() {
-      this.offset = this.offset - 16
+      this.offset = this.offset - 15
     },
     getInput(input) {
       this.offset = this.limit * input
@@ -109,9 +147,25 @@ export default {
   },
   watch: {
     offset: {
-      immediate: true,
+      immediate: false,
       handler: 'getPokemons',
     },
   },
 }
 </script>
+<style scoped>
+::v-deep .v-pagination__navigation {
+  width: 50px;
+  height: 50px;
+  border: solid 1px white;
+}
+::v-deep .v-pagination__item {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border: solid 1px white;
+}
+::v-deep .v-pagination__item--active {
+  border: solid 1px white !important;
+}
+</style>

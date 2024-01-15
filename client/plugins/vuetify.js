@@ -2,24 +2,16 @@
 
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import es from 'vuetify/lib/locale/zh-Hans'
-import en from 'vuetify/lib/locale/zh-Hans'
-
-
 Vue.use(Vuetify)
 
 export default new Vuetify({
-    lang: {
-        locales: { es, en },
-        current: 'es',
-    },
     theme: {
-        dark: false,
+        dark: true,
         themes: {
             light: {
-                primary: '#FFD700', // Gold/Yellow
+                primary: '#FFFF00', // Yellow
                 secondary: '#EF5350', // Red
-                bodyColor: '#FFFFFF', // White
+                bodyColor: '#EF5350', // White
                 textLight: '#212121', // Dark Gray/Black
                 dark: '#424242', // Gray
                 greyText: '#616161', // Light Gray
@@ -30,11 +22,11 @@ export default new Vuetify({
                 error: '#EF5350', // Red
                 info: '#FFFFFF', // White
                 success: '#4CAF50', // Green
-                warning: '#FFD700' // Gold/Yellow
+                warning: '#FFFF00' // Yellow
             },
             dark: {
-                primary: '#FFD700', // Gold/Yellow
-                secondary: '#EF5350', // Red
+                primary: '#8E24AA', // Yellow
+                secondary: '#8E24AA', // Violet
                 bodyColor: '#212121', // Dark Gray/Black
                 textLight: '#FFFFFF', // White
                 dark: '#1F1F1F', // Dark Gray
@@ -46,9 +38,8 @@ export default new Vuetify({
                 error: '#EF5350', // Red
                 info: '#FFFFFF', // White
                 success: '#4CAF50', // Green
-                warning: '#FFD700' // Gold/Yellow
+                warning: '#8E24AA' // Violet
             }
         }
-
     }
 })
