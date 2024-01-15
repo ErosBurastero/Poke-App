@@ -168,30 +168,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-::-webkit-scrollbar {
-  width: 8px;
-  height: 80px;
-}
-
-::-webkit-scrollbar-track {
-  background: #e7e7e7;
-  border-radius: 5px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #3e4251;
-  border-radius: 5px;
-}
-::v-deep
-  .v-data-table
-  > .v-data-table__wrapper
-  > table
-  > tbody
-  > tr:hover:not(.v-data-table__expanded__content):not(
-    .v-data-table__empty-wrapper
-  ) {
-  background: none !important;
-}
-</style>

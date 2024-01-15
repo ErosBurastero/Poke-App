@@ -1,6 +1,18 @@
 <template>
   <div class="mt-10 wrapper" v-if="pokemons">
     <v-container fluid class="pa-0">
+      <v-row>
+        <v-col cols="12" md="6" lg="4">
+          <TextField
+            v-model.trim="pokemonModel"
+            @keyup.enter="getPokemonByName(pokemonModel)"
+            @click:clear="getPokemons"
+            clearable
+            outlined
+            placeholder="Buscar pokemon..."
+          />
+        </v-col>
+      </v-row>
       <v-row justify="space-between">
         <v-col
           cols="12"
@@ -96,6 +108,7 @@ export default {
   data() {
     return {
       pokemons: [],
+      pokemonModel: '',
       pokemon: null,
       offset: 15,
       limit: 15,
@@ -141,6 +154,27 @@ export default {
         this.$store
       )
     },
+    async getPokemonByName(name) {
+      await fetchDataFunction(
+        async () => {
+          const res = await this.$getPokemonByName(name)
+          return res
+        },
+        async (data) => {
+          this.pokemons = [data.data]
+          console.log(this.pokemons, 'pokemons')
+        },
+        (error) => {
+          this.handleAlert({
+            showAlert: true,
+            type: 'error',
+            text: 'Error al intentar cargar pokemones, por favor, refresque la pagina',
+          })
+          return error
+        },
+        this.$store
+      )
+    },
     increaseOffset() {
       this.offset = this.offset + 15
     },
@@ -155,13 +189,21 @@ export default {
       this.pokemon = pokemon
     },
   },
-  async mounted() {
+  async created() {
     await this.getPokemons()
   },
   watch: {
     offset: {
       immediate: false,
       handler: 'getPokemons',
+    },
+    pokemonModel: {
+      immediate: false,
+      async handler(newVal, oldVal) {
+        if (newVal?.length === 0 && oldVal?.length === 1) {
+          await this.getPokemons()
+        }
+      },
     },
   },
 }
