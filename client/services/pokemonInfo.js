@@ -16,8 +16,6 @@ export default () => {
             }
         },
 
-
-
         getPokemonByName: async(name) => {
             try {
                 const res = await axios.get(`api/v2/pokemon/${name}`)

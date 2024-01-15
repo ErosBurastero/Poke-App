@@ -9,7 +9,7 @@
             @click:clear="getPokemons"
             clearable
             outlined
-            placeholder="Buscar pokemon..."
+            placeholder="Buscar pokemon y presiona enter..."
           />
         </v-col>
       </v-row>
@@ -162,7 +162,6 @@ export default {
         },
         async (data) => {
           this.pokemons = [data.data]
-          console.log(this.pokemons, 'pokemons')
         },
         (error) => {
           this.handleAlert({

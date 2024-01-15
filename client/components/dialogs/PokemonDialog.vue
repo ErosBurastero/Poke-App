@@ -3,7 +3,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     width="1000"
-    height="700"
+    height="800"
     v-if="pokemon"
   >
     <Card width="1000" height="800" color="bodyColor" class="px-6 br-16">
