@@ -7,7 +7,7 @@ export default () => {
                 const res = await axios.get(`api/v2/pokemon`, {
                     params: {
                         limit,
-                        offset
+                        offset,
                     }
                 })
                 return res
@@ -15,9 +15,21 @@ export default () => {
                 throw err.response
             }
         },
+
+
+
         getPokemonByName: async(name) => {
             try {
                 const res = await axios.get(`api/v2/pokemon/${name}`)
+                return res
+            } catch (err) {
+                throw err.response
+            }
+        },
+
+        getPokemonDescription: async(id) => {
+            try {
+                const res = await axios.get(`api/v2/characteristic/${id}`)
                 return res
             } catch (err) {
                 throw err.response

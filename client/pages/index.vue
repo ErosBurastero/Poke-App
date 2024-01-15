@@ -9,7 +9,11 @@
           v-for="(pokemon, index) in pokemons"
           :key="index"
         >
-          <Card color="primary" cardClass="br-16 h-100">
+          <Card
+            color="primary"
+            cardClass="br-16 h-100 pointer"
+            @click="openOrCloseDialog(pokemon)"
+          >
             <template #content>
               <v-row>
                 <v-col cols="12" class="d-flex justify-center">
@@ -26,7 +30,7 @@
               <v-divider></v-divider>
               <v-row class="px-4 pb-4">
                 <v-col cols="12">
-                  <h2 class="vt fs-36 text-center">{{ pokemon.name }}</h2>
+                  <h2 class="vt fs-50 text-center">{{ pokemon.name }}</h2>
                   <div class="d-flex align-center mt-2">
                     <h3 class="fs-28 poppins">
                       {{ pokemon.types.length === 1 ? 'Type: ' : 'Types: ' }}
@@ -72,17 +76,25 @@
     <Snackbar v-model="snackbar.model" :color="snackbar.color">{{
       snackbar.text
     }}</Snackbar>
+    <PokemonDialog
+      @click:outside="openOrCloseDialog"
+      @closeDialog="openOrCloseDialog"
+      v-if="dialog && pokemon"
+      v-model="dialog"
+      :pokemon="pokemon"
+    />
   </div>
 </template>
 
 <script>
 import { fetchDataFunction } from '@/services/fetchDataFunction'
-import { mapMutations } from 'vuex'
+
 export default {
   name: 'IndexPage',
   data() {
     return {
       pokemons: [],
+      pokemon: null,
       snackbar: {
         model: false,
         text: '',
@@ -94,10 +106,10 @@ export default {
       currentPage: 1,
       nextPage: null,
       previousPage: null,
+      dialog: false,
     }
   },
   methods: {
-    ...mapMutations(['handleLoading']),
     async getPokemons() {
       await fetchDataFunction(
         async () => {
@@ -105,7 +117,6 @@ export default {
           return res
         },
         async (data) => {
-          console.log(data)
           this.previousPage = data.data.previous
           this.nextPage = data.data.next
           if (data.data.count > 15) {
@@ -120,7 +131,6 @@ export default {
             })
           )
           this.pokemons = pokemonDetails
-          console.log(this.pokemons, 'pokemons')
         },
         (error) => {
           this.snackbar.snackbar = true
@@ -140,6 +150,10 @@ export default {
     },
     getInput(input) {
       this.offset = this.limit * input
+    },
+    openOrCloseDialog(pokemon) {
+      this.dialog = !this.dialog
+      this.pokemon = pokemon
     },
   },
   async mounted() {
