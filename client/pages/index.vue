@@ -75,6 +75,7 @@
       <v-row>
         <v-col cols="12" class="d-flex justify-center">
           <Pagination
+            v-if="pokemons.length > 1"
             color="primary"
             navigation-color="primary"
             circle

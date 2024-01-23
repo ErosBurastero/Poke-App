@@ -34,7 +34,11 @@ export default {
   },
   methods: {
     refreshPage() {
-      location.reload()
+      if (this.$route.name !== 'index') {
+        this.$router.push('/')
+      } else {
+        location.reload()
+      }
     },
   },
   head() {
